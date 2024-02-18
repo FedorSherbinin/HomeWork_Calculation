@@ -14,7 +14,6 @@ public class Logger {
     }
 
     public static void logResult(String result) {
-        System.out.println("RESULT: " + result);
         writeToFile("RESULT: " + result);
     }
 
