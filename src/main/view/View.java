@@ -15,41 +15,33 @@ public class View {
 
     public ComplexNumber readComplexNumber(String prompt) {
         System.out.println(prompt);
-        System.out.print("Введите реальную часть: ");
         double real = scanner.nextDouble();
-        System.out.print("Введите мнимую часть: ");
+        System.out.println("Введите мнимую часть:");
         double imaginary = scanner.nextDouble();
-
         return new ComplexNumber(real, imaginary);
     }
 
-    // Метод для чтения выбора операции от пользователя
     public int readMenuChoice() {
         System.out.println("Выберите операцию:");
         System.out.println("1. Сложение");
         System.out.println("2. Вычитание");
         System.out.println("3. Умножение");
         System.out.println("4. Деление");
-        System.out.println("0. Завершить");
 
         return scanner.nextInt();
     }
 
-    // Метод для проверки желания пользователя выполнить еще одну операцию
     public boolean wantToContinue() {
-        System.out.print("Хотите выполнить еще одну операцию? (y/n): ");
-        String answer = scanner.next().toLowerCase();
-
-        return answer.equals("y");
+        System.out.println("Хотите выполнить еще одну операцию? (yes/no)");
+        String choice = scanner.next().toLowerCase();
+        return choice.equals("yes");
     }
 
-    // Метод для отображения результата
     public void displayResult(String result) {
-        Logger.logResult(result);
+        System.out.println("Результат: " + result);
     }
 
-    // Метод для отображения логов
     public void displayLog(String message) {
-        Logger.log(message);
+        System.out.println(message);
     }
 }

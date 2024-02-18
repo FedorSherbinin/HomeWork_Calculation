@@ -4,6 +4,8 @@ package main.model;
 public class SubtractStrategy implements ComplexOperationStrategy {
     @Override
     public ComplexNumber execute(ComplexNumber num1, ComplexNumber num2) {
-        return num1.minus(num2);
+        double realDifference = num1.getReal() - num2.getReal();
+        double imaginaryDifference = num1.getImaginary() - num2.getImaginary();
+        return new ComplexNumber(realDifference, imaginaryDifference);
     }
 }

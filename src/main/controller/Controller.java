@@ -1,17 +1,21 @@
 package main.controller;
 
-import main.model.ComplexOperationStrategy;
 import main.model.*;
 import main.view.View;
+
+import java.util.HashMap;
+import java.util.Map;
 
 // Контроллер приложения
 public class Controller {
     private Model model;
     private View view;
+    private Map<Integer, ComplexOperationStrategy> operationStrategies;
 
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
+        this.operationStrategies = initializeOperationStrategies();
     }
 
     public void processUserInput() {
@@ -21,16 +25,15 @@ public class Controller {
 
             int choice = view.readMenuChoice();
 
-            if (choice == 0) {
-                view.displayLog("Программа завершена.");
-                break;
+            ComplexOperationStrategy strategy = operationStrategies.get(choice);
+            if (strategy != null) {
+                model.setNum1(num1);
+                model.setNum2(num2);
+                ComplexNumber result = model.calculateResult(strategy);
+                view.displayResult(result);
+            } else {
+                view.displayLog("Неверный выбор операции.");
             }
-
-            ComplexOperationStrategy strategy = getStrategyByChoice(choice);
-            model.setNum1(num1);
-            model.setNum2(num2);
-            ComplexNumber result = model.calculateResult(strategy);
-            view.displayResult(result.toString());
 
             if (!view.wantToContinue()) {
                 view.displayLog("Программа завершена.");
@@ -39,19 +42,12 @@ public class Controller {
         }
     }
 
-    private ComplexOperationStrategy getStrategyByChoice(int choice) {
-        switch (choice) {
-            case 1:
-                return new AddStrategy();
-            case 2:
-                return new SubtractStrategy();
-            case 3:
-                return new MultiplyStrategy();
-            case 4:
-                return new DivideStrategy();
-            default:
-                view.displayLog("Неверный выбор операции.");
-                return null;
-        }
+    private Map<Integer, ComplexOperationStrategy> initializeOperationStrategies() {
+        Map<Integer, ComplexOperationStrategy> strategies = new HashMap<>();
+        strategies.put(1, new AddStrategy());
+        strategies.put(2, new SubtractStrategy());
+        strategies.put(3, new MultiplyStrategy());
+        strategies.put(4, new DivideStrategy());
+        return strategies;
     }
 }
