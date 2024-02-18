@@ -40,7 +40,7 @@ public class ComplexNumber {
 
     @Override
     public String toString() {
-        return "Алгебраическая форма: " + real + " + " + imaginary + "i, \nРадиус: " + getRadius() + ", \nАргумент: " + getArgument()
+        return "Результат: \nАлгебраическая форма: " + real + " + " + imaginary + "i, \nРадиус: " + getRadius() + ", \nАргумент: " + getArgument()
                 + "\nПоказательная форма: " + getExponentialForm() + "\nТригонометрическая форма: " + getTrigonometricForm();
     }
 }
