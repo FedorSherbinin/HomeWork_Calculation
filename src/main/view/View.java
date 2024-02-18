@@ -1,7 +1,6 @@
 package main.view;
 
 import main.model.ComplexNumber;
-import main.util.Logger;
 
 import java.util.Scanner;
 
@@ -37,7 +36,7 @@ public class View {
         return choice.equals("yes");
     }
 
-    public void displayResult(String result) {
+    public void displayResult(ComplexNumber result) {
         System.out.println("Результат: " + result);
     }
 
