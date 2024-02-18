@@ -37,7 +37,7 @@ public class View {
     }
 
     public void displayResult(ComplexNumber result) {
-        System.out.println("Результат: " + result);
+        System.out.println(result);
     }
 
     public void displayLog(String message) {
